@@ -121,6 +121,30 @@ userRouter.put("/update/:id", auth, async (req, res) => {
   }
 });
 
+// get all users with starting their name words
+userRouter.get("/q", [auth, authorizedAdmin], async (req, res) => {
+  const { name } = req.query;
+
+  if (!name) {
+    return res.status(400).json({ error: "Name query parameter is required" });
+  }
+
+  try {
+    const users = await UserModel.find({
+      name: { $regex: `^${name}`, $options: "i" }, // Matches names starting with `name`
+    });
+
+    if (users.length === 0) {
+      return res.status(404).json({ message: "No users found" });
+    }
+
+    res.status(200).json({ data: users });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 // find a single user by id
 userRouter.get("/:id", async (req, res) => {
   const { id } = req.params;

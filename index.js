@@ -10,6 +10,10 @@ const connection = require("./config/db");
 
 // authentication middleware
 const auth = require("./middleware/auth");
+const authorizedAdmin = require("./middleware/authorizedAdmin.js");
+
+const homeRouter = require("./routes/home.route.js");
+server.use("/", homeRouter);
 
 // user router
 const userRouter = require("./routes/user.route.js");
@@ -18,6 +22,9 @@ server.use("/api/user", userRouter);
 //course routes
 const courseRouter = require("./routes/course.route");
 server.use("/api/course", courseRouter);
+
+const lectureRouter = require("./routes/lecture.route.js");
+server.use("/api/lecture", [auth], lectureRouter);
 
 server.get("/", async (req, res) => {
   try {

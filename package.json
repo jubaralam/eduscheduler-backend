@@ -1,11 +1,11 @@
 {
   "name": "eduscheduler-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This API manages user authentication and profile operations, including registration, login, profile updates, retrieval, and deletion.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/jubaralam/eduscheduler-backend/issues"
   },
-  "homepage": "https://github.com/jubaralam/eduscheduler-backend#readme"
+  "homepage": "https://github.com/jubaralam/eduscheduler-backend#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "marked": "^15.0.7",
+    "path": "^0.12.7"
+  }
 }

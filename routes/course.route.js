@@ -39,7 +39,7 @@ courseRouter.get("/:id", async (req, res) => {
     if (!course) {
       return res.status(404).send({ message: "course not found" });
     }
-    res.status(201).send({ data: course });
+    res.status(200).send({ data: course });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
